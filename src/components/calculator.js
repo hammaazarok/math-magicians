@@ -1,6 +1,5 @@
 import React from 'react';
 import calculate from '../logic/calculate';
-import operate from '../logic/operate';
 /* eslint-disable react/prefer-stateless-function
  ,no-useless-constructor
  ,react/destructuring-assignment
@@ -30,7 +29,7 @@ class Calculator extends React.Component {
     } else if (total !== null) {
       screen.innerHTML = total;
     } else if (next !== null && total !== null) {
-      screen.innerHTML = operate(total, next, value);
+      screen.innerHTML = total;
     } else {
       screen.innerHTML = '0';
     }
