@@ -17,7 +17,7 @@
   height: 60px;
 }
 
-.cal-item:hover{
+.cal-item:hover {
   background-color: #bab9b9;
   cursor: pointer;
 }
