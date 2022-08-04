@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import calculate from '../logic/calculate';
 /* eslint-disable react/prefer-stateless-function
  ,no-useless-constructor
@@ -8,59 +8,54 @@ import calculate from '../logic/calculate';
  ,jsx-a11y/no-static-element-interactions
  ,react/prop-types
  ,react/no-unused-state */
-class Calculator extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      total: null,
-      next: null,
-      operation: null,
-    };
-    this.performClick = this.performClick.bind(this);
-  }
+let [obj, setObj] = [{}, () => {}];
 
-  performClick(e) {
-    const value = e.target.innerHTML;
-    const { total, next, operation } = calculate(this.state, value);
-    this.setState({ total, next, operation });
-    const screen = document.querySelector('.screen');
-    if (next !== null) {
-      screen.innerHTML = next;
-    } else if (total !== null) {
-      screen.innerHTML = total;
-    } else if (next !== null && total !== null) {
-      screen.innerHTML = total;
-    } else {
-      screen.innerHTML = '0';
-    }
+const performClick = (e) => {
+  const value = e.target.innerHTML;
+  const { total, next, operation } = calculate(obj, value);
+  setObj({ total, next, operation });
+  const screen = document.querySelector('.screen');
+  if (next !== null) {
+    screen.innerHTML = next;
+  } else if (total !== null) {
+    screen.innerHTML = total;
+  } else if (next !== null && total !== null) {
+    screen.innerHTML = total;
+  } else {
+    screen.innerHTML = '0';
   }
+};
+const Calculator = () => {
+  [obj, setObj] = useState({
+    total: null,
+    next: null,
+    operation: null,
+  });
 
-  render() {
-    return (
-      <div className="calculator">
-        <div className="cal-item screen">0</div>
-        <div className="cal-item" onClick={this.performClick}>AC</div>
-        <div className="cal-item" onClick={this.performClick}>+/-</div>
-        <div className="cal-item" onClick={this.performClick}>%</div>
-        <div className="cal-item orange" onClick={this.performClick}>÷</div>
-        <div className="cal-item" onClick={this.performClick}>7</div>
-        <div className="cal-item" onClick={this.performClick}>8</div>
-        <div className="cal-item" onClick={this.performClick}>9</div>
-        <div className="cal-item orange" onClick={this.performClick}>x</div>
-        <div className="cal-item" onClick={this.performClick}>4</div>
-        <div className="cal-item" onClick={this.performClick}>5</div>
-        <div className="cal-item" onClick={this.performClick}>6</div>
-        <div className="cal-item orange" onClick={this.performClick}>-</div>
-        <div className="cal-item" onClick={this.performClick}>1</div>
-        <div className="cal-item" onClick={this.performClick}>2</div>
-        <div className="cal-item" onClick={this.performClick}>3</div>
-        <div className="cal-item orange" onClick={this.performClick}>+</div>
-        <div className="cal-item zero" onClick={this.performClick}>0</div>
-        <div className="cal-item" onClick={this.performClick}>.</div>
-        <div className="cal-item orange" onClick={this.performClick}>=</div>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="calculator">
+      <div className="cal-item screen">0</div>
+      <div className="cal-item" onClick={performClick}>AC</div>
+      <div className="cal-item" onClick={performClick}>+/-</div>
+      <div className="cal-item" onClick={performClick}>%</div>
+      <div className="cal-item orange" onClick={performClick}>÷</div>
+      <div className="cal-item" onClick={performClick}>7</div>
+      <div className="cal-item" onClick={performClick}>8</div>
+      <div className="cal-item" onClick={performClick}>9</div>
+      <div className="cal-item orange" onClick={performClick}>x</div>
+      <div className="cal-item" onClick={performClick}>4</div>
+      <div className="cal-item" onClick={performClick}>5</div>
+      <div className="cal-item" onClick={performClick}>6</div>
+      <div className="cal-item orange" onClick={performClick}>-</div>
+      <div className="cal-item" onClick={performClick}>1</div>
+      <div className="cal-item" onClick={performClick}>2</div>
+      <div className="cal-item" onClick={performClick}>3</div>
+      <div className="cal-item orange" onClick={performClick}>+</div>
+      <div className="cal-item zero" onClick={performClick}>0</div>
+      <div className="cal-item" onClick={performClick}>.</div>
+      <div className="cal-item orange" onClick={performClick}>=</div>
+    </div>
+  );
+};
 
 export default Calculator;
