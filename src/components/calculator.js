@@ -1,59 +1,49 @@
 import React, { useState } from 'react';
 import calculate from '../logic/calculate';
-/* eslint-disable react/prefer-stateless-function
- ,no-useless-constructor
- ,react/destructuring-assignment
- ,jsx-a11y/interactive-supports-focus
- ,jsx-a11y/click-events-have-key-events
- ,jsx-a11y/no-static-element-interactions
- ,react/prop-types
- ,react/no-unused-state */
-let [obj, setObj] = [{}, () => {}];
 
-const performClick = (e) => {
-  const value = e.target.innerHTML;
-  const { total, next, operation } = calculate(obj, value);
-  setObj({ total, next, operation });
-  const screen = document.querySelector('.screen');
-  if (next !== null) {
-    screen.innerHTML = next;
-  } else if (total !== null) {
-    screen.innerHTML = total;
-  } else if (next !== null && total !== null) {
-    screen.innerHTML = total;
-  } else {
-    screen.innerHTML = '0';
-  }
-};
 const Calculator = () => {
-  [obj, setObj] = useState({
+  const [obj, setObj] = useState({
     total: null,
     next: null,
     operation: null,
   });
-
+  const performClick = (e) => {
+    const value = e.target.innerHTML;
+    const { total, next, operation } = calculate(obj, value);
+    setObj({ total, next, operation });
+    const screen = document.querySelector('.screen');
+    if (next !== null) {
+      screen.innerHTML = next;
+    } else if (total !== null) {
+      screen.innerHTML = total;
+    } else if (next !== null && total !== null) {
+      screen.innerHTML = total;
+    } else {
+      screen.innerHTML = '0';
+    }
+  };
   return (
     <div className="calculator">
       <div className="cal-item screen">0</div>
-      <div className="cal-item" onClick={performClick}>AC</div>
-      <div className="cal-item" onClick={performClick}>+/-</div>
-      <div className="cal-item" onClick={performClick}>%</div>
-      <div className="cal-item orange" onClick={performClick}>÷</div>
-      <div className="cal-item" onClick={performClick}>7</div>
-      <div className="cal-item" onClick={performClick}>8</div>
-      <div className="cal-item" onClick={performClick}>9</div>
-      <div className="cal-item orange" onClick={performClick}>x</div>
-      <div className="cal-item" onClick={performClick}>4</div>
-      <div className="cal-item" onClick={performClick}>5</div>
-      <div className="cal-item" onClick={performClick}>6</div>
-      <div className="cal-item orange" onClick={performClick}>-</div>
-      <div className="cal-item" onClick={performClick}>1</div>
-      <div className="cal-item" onClick={performClick}>2</div>
-      <div className="cal-item" onClick={performClick}>3</div>
-      <div className="cal-item orange" onClick={performClick}>+</div>
-      <div className="cal-item zero" onClick={performClick}>0</div>
-      <div className="cal-item" onClick={performClick}>.</div>
-      <div className="cal-item orange" onClick={performClick}>=</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="0">AC</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-1">+/-</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-2">%</div>
+      <div className="cal-item orange" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-3">÷</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-4">7</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-5">8</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-6">9</div>
+      <div className="cal-item orange" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-7">x</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-8">4</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-9">5</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-10">6</div>
+      <div className="cal-item orange" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-11">-</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-12">1</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-13">2</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-14">3</div>
+      <div className="cal-item orange" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-15">+</div>
+      <div className="cal-item zero" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-16">0</div>
+      <div className="cal-item" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-17">.</div>
+      <div className="cal-item orange" onClick={performClick} onKeyDown={performClick} role="button" tabIndex="-18">=</div>
     </div>
   );
 };
